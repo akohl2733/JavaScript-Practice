@@ -61,12 +61,3 @@ console.log("The prices are taxed.\nThe total comes to: " + priceTaxed);
 const overhead = .75
 const total = priceTaxed.reduce((arr, curr) => arr + (curr * (1 - overhead)), 0);
 console.log("The total is: " + total);
-
-
-// ❓“When do I use .map() vs .forEach()?”
-// ❓“What’s the difference between .filter() and .reduce()?”
-// ❓“How do I build a function that returns a new array?”
-
-// Then you're golden 💪
-
-// Want a mini quiz next to test your understanding of those differences?
