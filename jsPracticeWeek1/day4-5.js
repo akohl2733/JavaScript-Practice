@@ -102,4 +102,106 @@ async function greetUser() {
     console.log(`Welcome back, ${user.name}`)
 }
 
-greetUser();
+// greetUser();
+
+
+// -----------------------------------------------
+// Quick project
+
+
+const task1 = {
+    title: "Laundry",
+    priority: "Medium",
+    completed: false
+};
+
+const task2 = {
+    title: 'Dishes',
+    priority: 'High',
+    completed: false
+};
+
+const task3 = {
+    title: "Vacuuming",
+    priority: "Low",
+    completed: false
+};
+
+// array of chores
+const arr = [task1, task2, task3];
+
+
+// closure func
+function outer(){
+    let counter = 0;
+    return function inner(){
+        counter ++;
+        return counter;
+    }
+};
+
+const countTasks = outer();
+
+function addTask(title, priority, completed=false){
+    task = {
+        title: title,
+        priority: priority,
+        completed: completed
+    };
+    arr.push(task);
+    const count = countTasks();
+    console.log(`Added "${title}". Total tasks: ${count}`);
+}
+
+const listTasks = (array) => {
+    console.log("---- Tasks ----");
+    for (let t of array){
+        const complete = t.completed ? "Completed" : "Not completed"
+        console.log(`${t.title} (Priority Level: ${t.priority}) -- ${complete}`)
+    }
+}
+
+const fakeFetchTasks = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([
+                { title: "Buy groceries", priority: "High", completed: false },
+                { title: "Call Mom", priority: "Low", completed: false },
+            ]);
+        });
+    });
+}
+
+async function loadInitialTasks() {
+    const fetchedTasks = await fakeFetchTasks();
+    arr.push(...fetchedTasks);
+    console.log("Initial tasks loaded.");
+    listTasks(arr);
+}
+
+function completeTask(task){
+    for (let t of arr){
+        if (t.title === task.title){
+            t.completed = true;
+            return "Successfully updated";
+        }
+    }
+    return `There is no task named ${task.name}`;
+}
+
+function listIncompleteTasks(array){
+    return array.filter((x) => !x.completed);
+    
+}
+
+const taskTitles = arr.map((x) => x.title);
+console.log("Task titles: ", taskTitles)
+
+
+// console.log(listIncompleteTasks(arr));
+// console.log(completeTask(task1));
+// console.log(task1);
+// console.log(listTasks(arr));
+// (async function () {
+//     await loadInitialTasks();
+// })();
