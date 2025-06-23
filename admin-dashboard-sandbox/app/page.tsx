@@ -12,6 +12,7 @@ export default function Home() {
           height={38}
           priority
         />
+        <p className="text-red-500 text-xl font-bold">Tailwind is working ✅</p>
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{" "}
